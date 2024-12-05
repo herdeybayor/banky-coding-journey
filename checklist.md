@@ -6,8 +6,8 @@
 - [x] Understand the "pizza delivery" analogy for how websites work
 - [x] Successfully install VS Code
 - [x] Successfully install Chrome
-- [x] Complete "favorite website" discussion activity
-- [x] Homework: Installation verification
+- [ ] Complete "favorite website" discussion activity
+- [ ] Homework: Installation verification
 
 #### Session 2: Tools & Basics
 - [ ] Create and organize project folders

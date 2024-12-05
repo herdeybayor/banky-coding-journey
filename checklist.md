@@ -3,11 +3,11 @@
 ## Introduction Week
 ### Week 1
 #### Session 1: Welcome to Web Development
-- [ ] Understand the "pizza delivery" analogy for how websites work
-- [ ] Successfully install VS Code
-- [ ] Successfully install Chrome
-- [ ] Complete "favorite website" discussion activity
-- [ ] Homework: Installation verification
+- [x] Understand the "pizza delivery" analogy for how websites work
+- [x] Successfully install VS Code
+- [x] Successfully install Chrome
+- [x] Complete "favorite website" discussion activity
+- [x] Homework: Installation verification
 
 #### Session 2: Tools & Basics
 - [ ] Create and organize project folders

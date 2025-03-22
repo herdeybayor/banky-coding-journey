@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Adventure: The Magic Picture Book</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 100, 0.1);
+        }
+        
+        h1, h2 {
+            color: #ff6b6b;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin-top: 30px;
+        }
+        
+        .character {
+            font-weight: bold;
+            color: #4361ee;
+        }
+        
+        .user-name {
+            color: #ff9e00;
+            font-weight: bold;
+        }
+        
+        .story-part {
+            padding: 15px;
+            border-left: 5px solid #4cc9f0;
+            background-color: #f8f9fa;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        button {
+            background-color: #4cc9f0;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1em;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background-color: #4361ee;
+            transform: scale(1.05);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        figure {
+            border: 2px solid #f77f00;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            margin: 20px auto;
+            background-color: #fcefb4;
+            max-width: 400px;
+        }
+        
+        figcaption {
+            font-style: italic;
+            padding: 8px;
+            color: #6a040f;
+        }
+        
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        
+        .congratulations {
+            text-align: center;
+            padding: 20px;
+            background-color: #caf0f8;
+            border-radius: 10px;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(76, 201, 240, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
+        }
+        
+        .tag-example {
+            background-color: #edf2fb;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        
+        .exercise {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #4cc9f0;
+        }
+        
+        #nameInput {
+            padding: 8px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 2px solid #4cc9f0;
+            width: 200px;
+        }
+        
+        .magic-effect {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            font-size: 2em;
+            color: #ff6b6b;
+            animation: fadeOut 3s forwards;
+        }
+        
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; display: none; visibility: hidden; }
+        }
+        
+        .exercise-result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        
+        .note {
+            font-size: 0.9em;
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .achievement {
+            border: 2px solid gold;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #fff3cd;
+            margin: 15px 0;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        ol, ul {
+            padding-left: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HTML Adventure: The Magic Picture Book</h1>
+        
+        <div id="intro">
+            <p>Hello there, young explorer! Before we begin our adventure, tell me your name:</p>
+            <input type="text" id="nameInput" placeholder="Your name here">
+            <button onclick="startAdventure()">Start Adventure!</button>
+        </div>
+        
+        <div id="story" class="hidden">
+            <div class="story-part">
+                <p>Once upon a time, in the magical land of HTMLopia, there lived a friendly wizard named <span class="character">Codey</span>. Codey had a very special picture book, but one day, something went terribly wrong!</p>
+                
+                <p>"Oh no, <span class="user-name" id="userName">friend</span>!" exclaimed Codey. "My magic picture book has lost all its captions! The pictures are still there, but nobody knows what they are about anymore!"</p>
+                
+                <p>Codey looked at you with hopeful eyes. "I've heard you're learning about HTML magic. Can you help me fix my book using special HTML spells called <strong>tags</strong>?"</p>
+                
+                <button onclick="showNextPart('part1')">I'll help you, Codey!</button>
+            </div>
+            
+            <div id="part1" class="hidden story-part">
+                <h2>The First Spell: <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code></h2>
+                
+                <p>"Thank you, <span class="user-name">friend</span>!" Codey smiled. "Let me teach you the first spell. In HTML, we use <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> tags to show pictures with descriptions."</p>
+                
+                <p>Codey waved his wand and showed you an example:</p>
+                
+                <div class="tag-example">
+                    <pre>&lt;figure&gt;
+    &lt;img src="dragon.jpg" alt="A friendly dragon"&gt;
+    &lt;figcaption&gt;Sparkles the dragon loves eating ice cream!&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+                </div>
+                
+                <p>"The <code>&lt;figure&gt;</code> tag is like a special container for pictures," explained Codey. "And the <code>&lt;figcaption&gt;</code> tag adds a description to tell people what the picture is about!"</p>
+                
+                <p>"Look at the first page of my book," said Codey, pointing to a picture.</p>
+                
+                <figure>
+                    <img src="https://placehold.co/400x250/f0a8bb/333333?text=Unicorn+on+Rainbow" alt="A unicorn on a rainbow">
+                    <figcaption>Princess Sparklehorn sliding down the rainbow bridge to Candyland</figcaption>
+                </figure>
+                
+                <p>"You see? The <code>&lt;figure&gt;</code> tag holds everything together, and the <code>&lt;figcaption&gt;</code> tag adds the magic words beneath the picture!"</p>
+                
+                <button onclick="showNextPart('exercise1')">Let's try fixing a picture!</button>
+            </div>
+            
+            <div id="exercise1" class="hidden exercise">
+                <h2>Exercise 1: Fix the Castle Picture</h2>
+                
+                <p>Codey points to the next page in the book. "This picture of the Crystal Castle has lost its caption! Can you add it back using the HTML spells I taught you?"</p>
+                
+                <p>Here's the picture:</p>
+                <img src="https://placehold.co/400x250/a8c9f0/333333?text=Crystal+Castle" alt="A magical crystal castle">
+                
+                <p>Try using <code>&lt;figure&gt;</code> and <code>&lt;figcaption&gt;</code> to fix it!</p>
+                
+                <div class="tag-example">
+                    <pre>&lt;figure&gt;
+    &lt;img src="castle.jpg" alt="A magical crystal castle"&gt;
+    &lt;figcaption&gt;The Crystal Castle where King Pixel lives&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+                </div>
+                
+                <button onclick="completeExercise1()">I've cast the HTML spell!</button>
+                
+                <div id="exercise1Result" class="hidden exercise-result">
+                    <figure>
+                        <img src="https://placehold.co/400x250/a8c9f0/333333?text=Crystal+Castle" alt="A magical crystal castle">
+                        <figcaption>The Crystal Castle where King Pixel lives</figcaption>
+                    </figure>
+                    
+                    <p>Codey claps his hands excitedly! "Great job! You've fixed the first picture in my book!"</p>
+                    
+                    <div class="achievement">
+                        <p>🏆 Achievement Unlocked: Figure Master Level 1! 🏆</p>
+                    </div>
+                    
+                    <button onclick="showNextPart('part2')">Continue the adventure</button>
+                </div>
+            </div>
+            
+            <div id="part2" class="hidden story-part">
+                <h2>More HTML Magic: Headings and Lists</h2>
+                
+                <p>"You're doing great, <span class="user-name">friend</span>!" Codey exclaimed. "But there's more to HTML magic than just pictures. Let me show you some other powerful spells!"</p>
+                
+                <p>Codey flipped to a new page in the book and pointed to some text.</p>
+                
+                <p>"In HTML, we use <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, and other heading tags to make titles and subtitles. Like this:"</p>
+                
+                <div class="tag-example">
+                    <pre>&lt;h1&gt;The Biggest Title&lt;/h1&gt;
+&lt;h2&gt;A Smaller Subtitle&lt;/h2&gt;
+&lt;h3&gt;An Even Smaller Subtitle&lt;/h3&gt;</pre>
+                </div>
+                
+                <h1 style="font-size: 1.8em;">The Biggest Title</h1>
+                <h2 style="font-size: 1.5em; color: #333;">A Smaller Subtitle</h2>
+                <h3 style="font-size: 1.2em; color: #555;">An Even Smaller Subtitle</h3>
+                
+                <p>"We also use <code>&lt;ul&gt;</code> for bullet lists and <code>&lt;ol&gt;</code> for numbered lists, with <code>&lt;li&gt;</code> for each item in the list."</p>
+                
+                <div class="tag-example">
+                    <pre>&lt;ul&gt;
+    &lt;li&gt;Wizard hats&lt;/li&gt;
+    &lt;li&gt;Magic wands&lt;/li&gt;
+    &lt;li&gt;Sparkly potions&lt;/li&gt;
+&lt;/ul&gt;</pre>
+                </div>
+                
+                <ul>
+                    <li>Wizard hats</li>
+                    <li>Magic wands</li>
+                    <li>Sparkly potions</li>
+                </ul>
+                
+                <p>"And of course, we can make text <strong>bold</strong> with <code>&lt;strong&gt;</code> tags and <u>underlined</u> with <code>&lt;u&gt;</code> tags!"</p>
+                
+                <button onclick="showNextPart('exercise2')">Let's try more HTML magic!</button>
+            </div>
+            
+            <div id="exercise2" class="hidden exercise">
+                <h2>Exercise 2: Create a Magical Recipe</h2>
+                
+                <p>Codey shows you a torn page in the book. "This was supposed to be a magical recipe page, but it's all mixed up! Can you recreate it using headings, lists, and text formatting?"</p>
+                
+                <p>Try to create:</p>
+                <ol>
+                    <li>A heading that says "Magical Rainbow Potion"</li>
+                    <li>A subtitle that says "Ingredients"</li>
+                    <li>A bullet list of ingredients</li>
+                    <li>A figure with an image and caption of the potion</li>
+                </ol>
+                
+                <div class="tag-example">
+                    <pre>&lt;h1&gt;Magical Rainbow Potion&lt;/h1&gt;
+&lt;h2&gt;Ingredients&lt;/h2&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;3 drops&lt;/strong&gt; of unicorn tears&lt;/li&gt;
+    &lt;li&gt;&lt;u&gt;A pinch&lt;/u&gt; of sparkly dust&lt;/li&gt;
+    &lt;li&gt;1 rainbow petal&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure&gt;
+    &lt;img src="potion.jpg" alt="Rainbow Potion"&gt;
+    &lt;figcaption&gt;The completed potion glows with all colors of the rainbow!&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+                </div>
+                
+                <button onclick="completeExercise2()">I've fixed the recipe page!</button>
+                
+                <div id="exercise2Result" class="hidden exercise-result">
+                    <h1 style="font-size: 1.8em; text-align: left; color: #333;">Magical Rainbow Potion</h1>
+                    <h2 style="font-size: 1.5em; text-align: left; color: #333;">Ingredients</h2>
+                    <ul>
+                        <li><strong>3 drops</strong> of unicorn tears</li>
+                        <li><u>A pinch</u> of sparkly dust</li>
+                        <li>1 rainbow petal</li>
+                    </ul>
+                    <figure>
+                        <img src="https://placehold.co/400x250/e3f0a8/333333?text=Rainbow+Potion" alt="Rainbow Potion">
+                        <figcaption>The completed potion glows with all colors of the rainbow!</figcaption>
+                    </figure>
+                    
+                    <p>"Amazing!" Codey jumps with joy. "You've mastered multiple HTML spells now!"</p>
+                    
+                    <div class="achievement">
+                        <p>🏆 Achievement Unlocked: HTML Wizard Apprentice! 🏆</p>
+                    </div>
+                    
+                    <button onclick="showNextPart('part3')">Continue to the final challenge</button>
+                </div>
+            </div>
+            
+            <div id="part3" class="hidden story-part">
+                <h2>The Final HTML Spell: Hyperlinks</h2>
+                
+                <p>"<span class="user-name">friend</span>, you're almost done restoring my magical book!" Codey said with excitement. "There's one last HTML spell I need to teach you - the <code>&lt;a&gt;</code> tag for making hyperlinks!"</p>
+                
+                <p>"Hyperlinks are like magic portals that can take you to other pages or websites," explained Codey. "They look like this:"</p>
+                
+                <div class="tag-example">
+                    <pre>&lt;a href="treasure.html"&gt;Click here to find the treasure!&lt;/a&gt;</pre>
+                </div>
+                
+                <p>It creates a link like this: <a href="#" style="color: #4361ee; text-decoration: underline;">Click here to find the treasure!</a></p>
+                
+                <p>"The <code>href</code> part tells the link where to go when someone clicks on it," added Codey.</p>
+                
+                <button onclick="showNextPart('exercise3')">Let's try the final spell!</button>
+            </div>
+            
+            <div id="exercise3" class="hidden exercise">
+                <h2>Final Challenge: Create the Magic Map</h2>
+                
+                <p>Codey shows you the last page of the book. "This is supposed to be a magic map that guides adventurers through HTMLopia, but it's completely blank! Can you create it using all the HTML spells you've learned?"</p>
+                
+                <p>Your challenge is to create:</p>
+                <ol>
+                    <li>A heading for "Magic Map of HTMLopia"</li>
+                    <li>A figure with an image and caption for the map</li>
+                    <li>A list of magical locations with hyperlinks</li>
+                </ol>
+                
+                <div class="tag-example">
+                    <pre>&lt;h1&gt;Magic Map of HTMLopia&lt;/h1&gt;
+&lt;figure&gt;
+    &lt;img src="map.jpg" alt="Map of HTMLopia"&gt;
+    &lt;figcaption&gt;The enchanted lands of HTMLopia with all its magical realms&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2&gt;Magical Locations&lt;/h2&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Crystal Castle&lt;/a&gt; - Home of King Pixel&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Rainbow Bridge&lt;/a&gt; - Path to Candyland&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Coder's Cavern&lt;/a&gt; - Where magic spells are created&lt;/li&gt;
+&lt;/ul&gt;</pre>
+                </div>
+                
+                <button onclick="completeExercise3()">I've created the magic map!</button>
+                
+                <div id="exercise3Result" class="hidden exercise-result">
+                    <h1 style="font-size: 1.8em; text-align: left; color: #333;">Magic Map of HTMLopia</h1>
+                    <figure>
+                        <img src="https://placehold.co/400x250/a8f0c9/333333?text=Map+of+HTMLopia" alt="Map of HTMLopia">
+                        <figcaption>The enchanted lands of HTMLopia with all its magical realms</figcaption>
+                    </figure>
+                    <h2 style="font-size: 1.5em; text-align: left; color: #333;">Magical Locations</h2>
+                    <ul>
+                        <li><a href="#" style="color: #4361ee; text-decoration: underline;">Crystal Castle</a> - Home of King Pixel</li>
+                        <li><a href="#" style="color: #4361ee; text-decoration: underline;">Rainbow Bridge</a> - Path to Candyland</li>
+                        <li><a href="#" style="color: #4361ee; text-decoration: underline;">Coder's Cavern</a> - Where magic spells are created</li>
+                    </ul>
+                    
+                    <p>Suddenly, the book begins to glow with a bright light!</p>
+                    
+                    <div class="achievement">
+                        <p>🏆 Achievement Unlocked: HTML Master Wizard! 🏆</p>
+                    </div>
+                    
+                    <button onclick="showFinalScene()">See what happens next</button>
+                </div>
+            </div>
+            
+            <div id="finalScene" class="hidden story-part">
+                <h2>The Magic Book is Restored!</h2>
+                
+                <p>A shower of colorful sparks erupts from the book as all the pages are restored to their full glory!</p>
+                
+                <p>"<span class="user-name">friend</span>, you did it!" Codey exclaims, dancing around with joy. "You've learned the magic of HTML and saved my book!"</p>
+                
+                <p>Codey looks at you with a twinkle in his eye. "Now you know the secrets of:</p>
+                
+                <ul>
+                    <li><strong>Figure and Figcaption</strong> - for showing pictures with descriptions</li>
+                    <li><strong>Headings</strong> - for making titles of different sizes</li>
+                    <li><strong>Lists</strong> - for organizing information</li>
+                    <li><strong>Text formatting</strong> - for making words <strong>bold</strong> or <u>underlined</u></li>
+                    <li><strong>Hyperlinks</strong> - for creating magic portals to other places</li>
+                </ul>
+                
+                <p>"You are now a true HTML wizard, <span class="user-name">friend</span>! With these powers, you can create your own magical web pages and share them with the world!"</p>
+                
+                <div class="congratulations">
+                    <h2>Congratulations!</h2>
+                    <p>You've completed the HTML Adventure and learned valuable coding skills!</p>
+                    <p>Keep practicing your HTML magic to become an even more powerful coder!</p>
+                </div>
+                
+                <button onclick="restartAdventure()">Start a New Adventure</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function startAdventure() {
+            const name = document.getElementById('nameInput').value.trim() || "Brave Explorer";
+            const userNameElements = document.getElementsByClassName('user-name');
+            
+            for (let i = 0; i < userNameElements.length; i++) {
+                userNameElements[i].textContent = name;
+            }
+            
+            document.getElementById('intro').classList.add('hidden');
+            document.getElementById('story').classList.remove('hidden');
+            
+            createMagicEffect("The adventure begins...");
+        }
+        
+        function showNextPart(partId) {
+            document.getElementById(partId).classList.remove('hidden');
+            
+            // Scroll to the newly revealed part
+            document.getElementById(partId).scrollIntoView({ behavior: 'smooth' });
+            
+            // Create a magic effect for transitions
+            createMagicEffect("✨ New HTML magic revealed! ✨");
+        }
+        
+        function completeExercise1() {
+            document.getElementById('exercise1Result').classList.remove('hidden');
+            document.getElementById('exercise1Result').scrollIntoView({ behavior: 'smooth' });
+            createMagicEffect("✨ Figure spell complete! ✨");
+        }
+        
+        function completeExercise2() {
+            document.getElementById('exercise2Result').classList.remove('hidden');
+            document.getElementById('exercise2Result').scrollIntoView({ behavior: 'smooth' });
+            createMagicEffect("✨ Recipe spell complete! ✨");
+        }
+        
+        function completeExercise3() {
+            document.getElementById('exercise3Result').classList.remove('hidden');
+            document.getElementById('exercise3Result').scrollIntoView({ behavior: 'smooth' });
+            createMagicEffect("✨ Map spell complete! ✨");
+        }
+        
+        function showFinalScene() {
+            document.getElementById('finalScene').classList.remove('hidden');
+            document.getElementById('finalScene').scrollIntoView({ behavior: 'smooth' });
+            createMagicEffect("🌈✨ THE BOOK IS RESTORED! ✨🌈");
+        }
+        
+        function restartAdventure() {
+            // Reset everything
+            document.getElementById('nameInput').value = "";
+            document.getElementById('story').classList.add('hidden');
+            document.getElementById('intro').classList.remove('hidden');
+            
+            // Hide all story parts
+            const storyParts = [
+                'part1', 'exercise1', 'exercise1Result', 
+                'part2', 'exercise2', 'exercise2Result', 
+                'part3', 'exercise3', 'exercise3Result', 
+                'finalScene'
+            ];
+            
+            for (const part of storyParts) {
+                document.getElementById(part).classList.add('hidden');
+            }
+            
+            // Scroll back to top
+            window.scrollTo(0, 0);
+        }
+        
+        function createMagicEffect(text) {
+            const effect = document.createElement('div');
+            effect.className = 'magic-effect';
+            effect.textContent = text;
+            document.body.appendChild(effect);
+            
+            // Remove the effect after animation completes
+            setTimeout(() => {
+                effect.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

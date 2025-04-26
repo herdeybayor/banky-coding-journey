@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Dream Pet Adoption Form</title>
+</head>
+<body>
+  <h1>🐾 Adopt Your Dream Pet! 🐾</h1>
+
+  <p>Fill out this form to adopt your favorite pet!</p>
+
+  <h2>🐶 Meet Some Pets:</h2>
+
+  <figure>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Cute_dog.jpg" width="250" alt="Cute Dog">
+    <figcaption>A playful dog who loves running!</figcaption>
+  </figure>
+
+  <figure>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_poster_1.jpg" width="250" alt="Cute Cat">
+    <figcaption>A calm cat who enjoys naps in the sun!</figcaption>
+  </figure>
+
+  <h2>📝 Adoption Form:</h2>
+
+  <form>
+    <label for="name">Your Name:</label><br>
+    <input type="text" id="name" name="name" placeholder="Enter your name"><br><br>
+
+    <label for="age">Your Age:</label><br>
+    <input type="number" id="age" name="age" placeholder="Enter your age"><br><br>
+
+    <p>Which pet do you want to adopt?</p>
+    <input type="radio" id="dog" name="pet" value="Dog">
+    <label for="dog">Dog</label><br>
+
+    <input type="radio" id="cat" name="pet" value="Cat">
+    <label for="cat">Cat</label><br><br>
+
+    <p>What things will you give your pet?</p>
+    <input type="checkbox" id="food" name="needs" value="Food">
+    <label for="food">Food</label><br>
+
+    <input type="checkbox" id="toys" name="needs" value="Toys">
+    <label for="toys">Toys</label><br>
+
+    <input type="checkbox" id="bed" name="needs" value="Bed">
+    <label for="bed">A comfy bed</label><br><br>
+
+    <button type="submit">Submit Form</button>
+  </form>
+
+  <p>Thank you for making a pet's life happy! 🐾</p>
+</body>
+</html>
